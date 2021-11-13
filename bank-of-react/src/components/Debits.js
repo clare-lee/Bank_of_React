@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
 
 class Debits extends Component {
     tableRow (data) {
@@ -11,7 +12,20 @@ class Debits extends Component {
         }
         return (
             <div>
-                <table>
+                <Link to="/">Back Home</Link>
+                <table class="table">
+                    <thead>
+                            <tr>
+                                <th colSpan="3">
+                                    <h2>Debits</h2>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
                     <tbody>
                         {rows}
                     </tbody>
