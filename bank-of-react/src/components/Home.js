@@ -5,7 +5,7 @@ import{Link} from 'react-router-dom';
 class Home extends Component {
   render() {
     return (
-        <div>
+        <div class="leftIndent">
             <img src="https://picsum.photos/201" alt="bank"/>
             <h1>Bank of React</h1>
 
