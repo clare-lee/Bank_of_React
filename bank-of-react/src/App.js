@@ -49,8 +49,7 @@ class App extends Component {
   }
   
   calculateAccountBalance = (credits, debits) => {
-    return credits.reduce((carry, credit) => carry + credit.amount,0) -
-        debits.reduce((carry, debit) => carry + debit.amount,0)
+    return credits.reduce((carry, credit) => carry + credit.amount,0) - debits.reduce((carry, debit) => carry + debit.amount,0)
   }
 
   addCredit = (credit) => {
@@ -73,6 +72,7 @@ class App extends Component {
 
     const HomeComponent = () => (<Home accountBalance={this.state.accountBalance}/>);
     const UserProfileComponent = () => (<UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />)
+    
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
     
     const CreditComponent = () => (<Credits credits={this.state.credits} addCredit={this.addCredit} />)
@@ -91,7 +91,5 @@ class App extends Component {
     );
   }
 }
-
-
 
 export default App;

@@ -1,14 +1,30 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import { Link } from 'react-router-dom'
 
 class Credits extends Component {
-    tableRow (data) {
-        return (<tr><td>{data.date}</td> <td>{data.description}</td> <td>{data.amount}</td> </tr>)
-    } 
+    constructor (props) {
+        super(props)
+        this.amountRef = createRef()
+        this.descriptionRef = createRef()
+        
+        this.addCredit = (event) => {
+            event.preventDefault()
+            let credit = {
+                description: this.descriptionRef.current.value,
+                amount: parseFloat(this.amountRef.current.value),
+                date: new Date(Date.now()).toISOString()
+            }
+            this.props.addCredit(credit)
+        }
+    }
     render() {
+        let tableRow = (data) => {
+            return (<tr><td>{data.date}</td> <td>{data.description}</td> <td>{data.amount.toFixed(2)}</td> </tr>)
+        } 
+    
         let rows = []
         for (let i =0; i<this.props.credits.length; i++) {
-            rows.push(this.tableRow(this.props.credits[i]))
+            rows.push(tableRow(this.props.credits[i]))
         }
         return (
             <div>
@@ -30,6 +46,17 @@ class Credits extends Component {
                         {rows}
                     </tbody>
                 </table>
+                <div class="inputCell">
+                    <label>
+                        Amount: 
+                        <input type="number" ref={this.amountRef} placeholder="$0.00" />
+                    </label>
+                    <label>
+                        Description: 
+                        <input ref={this.descriptionRef} placeholder="Credit Description" />
+                    </label>
+                    <button onClick={this.addCredit}>Add Credit</button>
+                </div>
             </div>
         );
     }

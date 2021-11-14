@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
 
 class Debits extends Component {
-    tableRow (data) {
-        return (<tr><td>{data.date}</td> <td>{data.description}</td> <td>{data.amount}</td> </tr>)
-    } 
     render() {
+        let tableRow = (data) => {
+        return (<tr><td>{data.date}</td> <td>{data.description}</td> <td>{data.amount.toFixed(2)}</td> </tr>)
+        } 
+    
         let rows = []
         for (let i =0; i<this.props.debits.length; i++) {
-            rows.push(this.tableRow(this.props.debits[i]))
+            rows.push(tableRow(this.props.debits[i]))
         }
         return (
             <div>
@@ -30,6 +31,17 @@ class Debits extends Component {
                         {rows}
                     </tbody>
                 </table>
+                <div class="inputCell">
+                    <label>
+                        Amount: 
+                        <input type="number" ref={this.amountRef} placeholder="$0.00" />
+                    </label>
+                    <label>
+                        Description: 
+                        <input ref={this.descriptionRef} placeholder="Debit Description" />
+                    </label>
+                    <button onClick={this.addDebit}>Add Debit</button>
+                </div>
             </div>
         );
     }
