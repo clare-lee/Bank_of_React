@@ -16,7 +16,12 @@ code {
   padding-left: 25px;
 }
 
-
 .table {
   width: 100%;
+}
+
+.inputCell {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
